@@ -1,7 +1,11 @@
 {
     "version": 2,
-    "functions": { "api/**/*.js": { "runtime": "nodejs18.x" } },
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/api/$1" }
-    ]
+    "framework": "ionic-angular",
+    "buildCommand": "npm run build",
+    "outputDirectory": "www",
+    "functions": {
+      "api/**/*.js": {
+        "runtime": "nodejs18.x"
+      }
+    }
   }
