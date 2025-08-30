@@ -1,0 +1,40 @@
+
+
+.tareas-content {
+    --background: #ffffff;
+  }
+  
+  .tarea-card {
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+    padding: 8px;
+  }
+  
+
+
+  .tarea-card ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .tarea-card p {
+    font-size: 0.95rem;
+    margin: 6px 0;
+    color: #333;
+  }
+  
+  .tarea-card ion-badge {
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  
+  .tarea-card ion-button {
+    margin-top: 10px;
+    --border-radius: 8px;
+    font-weight: 500;
+  }
+  

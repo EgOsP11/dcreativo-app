@@ -1,0 +1,40 @@
+.form-content {
+    --background: #ffffff;
+  }
+  
+  .form-card {
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  ion-card-content ion-item {
+    margin-bottom: 12px;
+    --background: transparent;
+    --border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    background: #fff;
+  }
+  
+  .section-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .colaboradores-list ion-item {
+    --background: #f9f9f9;
+    --border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 4px 12px;
+  }
+  
+  .submit-button {
+    margin: 24px 0;
+    --background: #000;
+    --color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+  }
+  

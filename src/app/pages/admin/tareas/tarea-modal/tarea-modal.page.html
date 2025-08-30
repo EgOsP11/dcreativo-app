@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Nueva Tarea</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+
+    <!-- Título de la tarea -->
+    <ion-item>
+      <ion-label position="floating">Título de la tarea</ion-label>
+      <ion-input [(ngModel)]="tarea.titulo" placeholder="Escribe un título"></ion-input>
+    </ion-item>
+
+    <!-- Seleccionar trabajador -->
+    <ion-item>
+      <ion-label>Asignar a</ion-label>
+      <ion-select [(ngModel)]="tarea.asignadoA" placeholder="Selecciona un trabajador">
+        <ion-select-option *ngFor="let trabajador of trabajadores" [value]="trabajador.uid">
+          {{ trabajador.name }} ({{ trabajador.email }})
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Fecha límite -->
+    <ion-item>
+      <ion-label>Fecha límite</ion-label>
+      <ion-datetime
+        presentation="date"
+        [(ngModel)]="tarea.fechaLimite">
+      </ion-datetime>
+    </ion-item>
+
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" color="medium" fill="outline" (click)="cerrar()">
+      Cancelar
+    </ion-button>
+    <ion-button expand="block" color="success" (click)="guardar()">
+      Guardar Tarea
+    </ion-button>
+  </div>
+</ion-content>

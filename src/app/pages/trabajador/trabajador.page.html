@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Mis Actividades</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo" style="height: 45px; margin-right: 12px;" />
+      <ion-button (click)="firebaseSvc.signOut()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Lista de Tareas -->
+  <ion-list *ngIf="tareas.length > 0; else noTareas">
+    <ion-card *ngFor="let tarea of tareas">
+      <ion-card-header>
+        <ion-card-title>{{ tarea.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Fecha límite:</strong> {{ tarea.fechaLimite }}</p>
+        <p><strong>Estado:</strong> {{ tarea.estado }}</p>
+
+        <!-- Si está pendiente: subir evidencia + botón -->
+        <div *ngIf="tarea.estado === 'pendiente'">
+          <p><strong>Subir evidencia de finalización:</strong></p>
+          <input type="file" accept="image/*" (change)="subirEvidencia(tarea, $event)" />
+          <ion-button expand="block" color="success" (click)="marcarComoCompletada(tarea)">
+            Tarea Completada
+          </ion-button>
+        </div>
+
+        <!-- Mostrar evidencia y aviso si ya fue marcada como entregada -->
+        <div *ngIf="tarea.estado === 'entregado'">
+          <p style="color: orange; font-weight: bold;">
+            Has marcado esta tarea como completada. Pendiente de revisión.
+          </p>
+          <div *ngIf="tarea.evidenciaUrl">
+            <p><strong>Evidencia:</strong></p>
+            <img [src]="tarea.evidenciaUrl" alt="Evidencia" style="max-width: 100%; border-radius: 8px;" />
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #noTareas>
+    <ion-item>
+      <ion-label>No tienes tareas asignadas.</ion-label>
+    </ion-item>
+  </ng-template>
+
+  <!-- Campos asignados -->
+  <ion-list *ngIf="campos.length > 0; else noCampos">
+    <ion-card *ngFor="let campo of campos">
+      <ion-card-header>
+        <ion-card-title>{{ campo.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Fecha:</strong> {{ campo.fecha }}</p>
+        <p><strong>Hora:</strong> {{ campo.hora }}</p>
+        <p><strong>Lugar:</strong> {{ campo.lugar }}</p>
+        <p><strong>Estado:</strong> {{ campo.estado }}</p>
+        <p><strong>Detalles:</strong> {{ campo.detalles }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #noCampos>
+    <ion-item>
+      <ion-label>No tienes campos asignados.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "681027730344",
+    "project_id": "appdcre",
+    "storage_bucket": "appdcre.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681027730344:android:3884a38f32287e2be8fb9d",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh4nfZU4wLl1jy7Lgh8olBipGVEmCj-uw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,30 @@
+.solicitudes-content {
+    --background: #f9f9f9;
+  }
+  
+  .solicitud-card {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  }
+  
+  ion-card-title {
+    font-weight: 600;
+    color: #222;
+  }
+  
+  ion-card-subtitle {
+    color: #666;
+  }
+  
+  ion-card-content p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  ion-button {
+    margin-top: 8px;
+    --border-radius: 10px;
+  }
+  

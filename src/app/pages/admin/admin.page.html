@@ -1,0 +1,76 @@
+<!-- ✅ Menú de hamburguesa lateral -->
+<ion-menu side="start" content-id="main-content">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Panel de Administración</ion-title>
+
+    </ion-toolbar>
+  </ion-header>
+  
+
+  <ion-content>
+    <ion-list>
+      <!-- Home -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="/admin/home" routerDirection="root">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <!-- Usuarios sin rol -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="/admin/users" routerDirection="root">
+          <ion-icon slot="start" name="people-outline"></ion-icon>
+          <ion-label>Usuarios en Espera</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <!-- Clientes -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="/admin/clientes" routerDirection="root">
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label>Clientes</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <!-- Trabajadores -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="/admin/trabajadores" routerDirection="root">
+          <ion-icon slot="start" name="construct-outline"></ion-icon>
+          <ion-label>Colaboradores</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <!-- Calendario -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="/admin/calendario" routerDirection="root">
+          <ion-icon slot="start" name="calendar-outline"></ion-icon>
+          <ion-label>Calendario</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <!-- Tareas -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="/admin/tareas" routerDirection="root">
+          <ion-icon slot="start" name="list-outline"></ion-icon>
+          <ion-label>Tareas</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <!-- Solicitudes --> <ion-menu-toggle auto-hide="false"> <ion-item routerLink="/admin/solicitudes" routerDirection="root"> 
+        <ion-icon slot="start" name="document-text-outline"></ion-icon> <ion-label>Solicitudes</ion-label> </ion-item> </ion-menu-toggle>
+
+      <!-- Cerrar sesión -->
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="signOut()">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- ✅ Contenido principal: aquí se cargan las páginas hijas -->
+<ion-router-outlet id="main-content"></ion-router-outlet>

@@ -1,0 +1,37 @@
+.actividades-content {
+    --background: #f8f8f8;
+  }
+  
+  .actividad-card {
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    margin-bottom: 16px;
+  }
+  
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  ion-card-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  ion-card-content p {
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  ion-chip {
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  
+  .muted {
+    color: #888;
+    font-size: 15px;
+  }
+  

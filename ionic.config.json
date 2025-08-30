@@ -1,0 +1,7 @@
+{
+  "name": "AppDcre",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

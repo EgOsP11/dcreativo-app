@@ -1,0 +1,33 @@
+.cliente-content {
+    --background: #f8f8f8;
+  }
+  
+  .campo-card,
+  .solicitud-card {
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    margin-bottom: 16px;
+  }
+  
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  ion-card-content p {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  ion-badge {
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  
+  .muted {
+    color: #888;
+    font-size: 15px;
+  }
+  

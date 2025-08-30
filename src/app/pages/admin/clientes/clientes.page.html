@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Clientes</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo Decreativo" class="logo-header" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="clientes-content">
+  <ion-card *ngFor="let user of clientes" class="user-card">
+    <ion-card-header>
+      <ion-card-title>{{ user.name }}</ion-card-title>
+      <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Rol:</strong> Cliente</p>
+
+      <ion-button color="danger" expand="block" fill="solid" (click)="eliminarCliente(user)">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Eliminar cliente
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

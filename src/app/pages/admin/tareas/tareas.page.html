@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Tareas</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo" style="height: 50px; margin-right: 12px;" />
+      <ion-button (click)="abrirModalTarea()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding tareas-content">
+  <ion-list *ngIf="tareas.length > 0; else noTareas">
+    <ion-card *ngFor="let tarea of tareas">
+      <ion-card-header>
+        <ion-card-title>{{ tarea.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Asignado a:</strong> {{ uidToNombre[tarea.asignadoA] || 'Sin nombre' }}</p>
+        <p><strong>Fecha límite:</strong> {{ tarea.fechaLimite | date:'d \'de\' MMMM \'de\' y' }}</p>
+        <p><strong>Estado:</strong>
+          <ion-badge [color]="getColorPorEstado(tarea.estado)">
+            {{ tarea.estado }}
+          </ion-badge>
+        </p>
+
+        <!-- Si está entregado: aviso + imagen -->
+        <div *ngIf="tarea.estado === 'entregado'">
+          <p style="color: orange; font-weight: bold;">
+            El trabajador ha marcado esta tarea como completada. Pendiente de revisión.
+          </p>
+          <div *ngIf="tarea.evidenciaUrl">
+            <p><strong>Evidencia subida:</strong></p>
+            <img [src]="tarea.evidenciaUrl" alt="Evidencia" style="max-width: 100%; border-radius: 8px;" />
+          </div>
+        </div>
+
+        <ion-button expand="block" size="small" fill="outline" (click)="cambiarEstado(tarea)">
+          Cambiar Estado
+        </ion-button>
+        <ion-button expand="block" size="small" color="danger" fill="solid" (click)="eliminarTarea(tarea.id)">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Eliminar Tarea
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #noTareas>
+    <ion-item>
+      <ion-label>No hay tareas asignadas aún.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

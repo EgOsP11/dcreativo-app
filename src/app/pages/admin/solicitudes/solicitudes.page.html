@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Solicitudes de Campo</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/D.png" alt="Logo" style="width: 28px; margin-right: 12px;" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding solicitudes-content">
+  <ion-card *ngFor="let solicitud of solicitudes" class="solicitud-card">
+    <ion-card-header>
+      <ion-card-title>Solicitud del {{ solicitud.fecha }}</ion-card-title>
+      <ion-card-subtitle>Cliente: {{ getNombreCliente(solicitud.solicitadoPor) }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Estado:</strong> {{ solicitud.estado }}</p>
+
+      <ion-button color="success" expand="block" fill="solid"
+        (click)="cambiarEstado(solicitud, 'aprobada')"
+        [disabled]="solicitud.estado !== 'pendiente'">
+        Aprobar
+      </ion-button>
+
+      <ion-button color="danger" expand="block" fill="solid"
+        (click)="cambiarEstado(solicitud, 'rechazada')"
+        [disabled]="solicitud.estado !== 'pendiente'">
+        Rechazar
+      </ion-button>
+
+      <ion-button color="tertiary" expand="block" fill="outline"
+        *ngIf="solicitud.estado === 'aprobada'"
+        (click)="crearCampoDesdeSolicitud(solicitud)">
+        Crear campo
+      </ion-button>
+
+      <ion-button color="medium" expand="block" fill="clear" size="small"
+        (click)="eliminarSolicitud(solicitud)">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Eliminar solicitud
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

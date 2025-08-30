@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo Decreativo" class="logo-header" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-content" *ngIf="showContent">
+  <div class="home-container">
+    <div class="home-card">
+      <h2>👋 <strong>Bienvenido a Decreativo</strong></h2>
+      <p>Estás en la sala de espera mientras un administrador te asigna un rol.</p>
+      <p>Una vez asignado, tendrás acceso a las funciones correspondientes.</p>
+    </div>
+
+    <ion-button expand="block" class="logout-button" (click)="signOut()">
+      CERRAR SESIÓN
+    </ion-button>
+  </div>
+</ion-content>

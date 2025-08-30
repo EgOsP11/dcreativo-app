@@ -1,0 +1,25 @@
+<ion-header> <ion-toolbar color="dark"> <ion-title>Calendario de Campos</ion-title> <ion-buttons slot="end"> <ion-button (click)="abrirModalCampo()" fill="clear"> <ion-icon name="add-circle-outline" slot="icon-only" color="light"></ion-icon> </ion-button> </ion-buttons> </ion-toolbar> </ion-header> <ion-content class="calendario-content"> <full-calendar [options]="calendarOptions"></full-calendar> <ion-list> <ion-card *ngFor="let campo of campos" class="campo-card"> <ion-card-header> <ion-card-title>{{ campo.titulo }}</ion-card-title> </ion-card-header>
+  <ion-card-content>
+    <p><strong>Fecha del campo:</strong> {{ campo.fecha }}</p>
+    <p><strong>Lugar:</strong> {{ campo.lugar }}</p>
+    <p><strong>Estado:</strong> {{ campo.estado }}</p>
+    <p><strong>Detalles:</strong> {{ campo.detalles || 'Sin detalles' }}</p>
+    <p><strong>Colaboradores:</strong> {{ campo.colaboradores?.join(', ') || 'Ninguno' }}</p>
+
+    <ion-button expand="block" color="primary" (click)="abrirModalEditar(campo)">
+      Editar
+    </ion-button>
+
+    <ion-button expand="block" color="danger" (click)="eliminarCampo(campo.id)">
+      Eliminar
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-list></ion-content>
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Colaboradores</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo Decreativo" class="logo-header" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="trabajadores-content">
+  <ion-card *ngFor="let user of trabajadores" class="user-card">
+    <ion-card-header>
+      <ion-card-title>{{ user.name }}</ion-card-title>
+      <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Rol:</strong> Trabajador</p>
+
+      <ion-button color="danger" fill="clear" size="small" (click)="eliminarTrabajador(user)">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Eliminar Colaborador
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

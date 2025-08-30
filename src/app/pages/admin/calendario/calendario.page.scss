@@ -1,0 +1,43 @@
+.calendario-content {
+    --background: #ffffff;
+    background-color: #ffffff;
+    padding: 1rem;
+    }
+    
+    .campo-card {
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    background-color: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    }
+    
+    .campo-card ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+    }
+    
+    .campo-card ion-card-content p {
+    font-size: 0.95rem;
+    margin: 0.3rem 0;
+    color: #333;
+    }
+    
+    .campo-card ion-button {
+    margin-top: 0.5rem;
+    }
+    
+    ion-toolbar {
+    --background: #000;
+    --color: #fff;
+    }
+    
+    ion-title {
+    font-weight: 600;
+    color: #fff;
+    }
+    
+    ion-icon[color="light"] {
+    font-size: 24px;
+    }

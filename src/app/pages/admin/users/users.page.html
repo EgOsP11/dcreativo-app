@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Usuarios en Espera</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo Decreativo" class="logo-header" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="usuarios-content">
+  <ion-card *ngFor="let user of usuariosEnEspera" class="user-card">
+    <ion-card-header>
+      <ion-card-title>{{ user.name }}</ion-card-title>
+      <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Rol actual:</strong> {{ user.role || 'Sin asignar' }}</p>
+
+      <ion-item lines="none" class="select-item">
+        <ion-label>Asignar nuevo rol</ion-label>
+        <ion-select (ionChange)="asignarRol(user.uid, $event.detail.value)">
+          <ion-select-option value="cliente">Cliente</ion-select-option>
+          <ion-select-option value="trabajador">Trabajador</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

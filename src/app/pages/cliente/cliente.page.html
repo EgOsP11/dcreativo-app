@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Cliente</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/De.png" alt="Logo" style="width: 50px; margin-right: 12px;" />
+      <ion-button fill="clear" (click)="firebaseSvc.signOut()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="cliente-content ion-padding">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+
+  <!-- ✅ Sesiones programadas -->
+  <ion-card *ngIf="misCampos.length > 0" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title>📆 Mis sesiones programadas</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngFor="let campo of misCampos" class="campo-card">
+    <ion-card-content>
+      <p><strong>📅 Fecha:</strong> {{ campo.fecha }} {{ campo.hora }}</p>
+      <p><strong>📍 Lugar:</strong> {{ campo.lugar || 'Por definir' }}</p>
+      <p><strong>📝 Detalles:</strong> {{ campo.detalles || 'Sin detalles' }}</p>
+      <p><strong>⏱ Estado:</strong> {{ campo.estado }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <p *ngIf="misCampos.length === 0" class="ion-text-center ion-margin-top muted">
+    No tienes sesiones programadas.
+  </p>
+
+  <!-- 🔹 Solicitudes -->
+  <ion-card *ngIf="misSolicitudes.length > 0" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title>📨 Mis solicitudes</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngFor="let solicitud of misSolicitudes" class="solicitud-card">
+    <ion-card-content>
+      <p><strong>📅 Fecha solicitada:</strong> {{ solicitud.fecha }}</p>
+      <p><strong>📌 Estado:</strong> 
+        <ion-badge [color]="solicitud.estado === 'rechazada' ? 'danger' : solicitud.estado === 'pendiente' ? 'warning' : 'success'">
+          {{ solicitud.estado }}
+        </ion-badge>
+      </p>
+      <ion-button color="medium" expand="block"
+        *ngIf="solicitud.estado === 'pendiente'"
+        (click)="cancelarSolicitud(solicitud)">
+        Cancelar solicitud
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <p *ngIf="misSolicitudes.length === 0" class="ion-text-center ion-margin-top muted">
+    No tienes solicitudes pendientes ni rechazadas.
+  </p>
+</ion-content>

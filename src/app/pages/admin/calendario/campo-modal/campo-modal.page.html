@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Nuevo Campo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="cerrar()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="form-content ion-padding">
+
+  <ion-card class="form-card">
+    <ion-card-content>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Título</ion-label>
+        <ion-input [(ngModel)]="campoData.titulo" placeholder="Ej. Grabación Huatulco"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-datetime presentation="date" [(ngModel)]="campoData.fecha"></ion-datetime>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Hora</ion-label>
+        <ion-datetime presentation="time" [(ngModel)]="campoData.hora"></ion-datetime>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Lugar</ion-label>
+        <ion-input [(ngModel)]="campoData.lugar" placeholder="Ej. Playa La Entrega"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Detalles</ion-label>
+        <ion-textarea [(ngModel)]="campoData.detalles" placeholder="Notas importantes..."></ion-textarea>
+      </ion-item>
+
+      <ion-label class="section-title" style="margin-top: 1rem;">Colaboradores</ion-label>
+      <ion-list class="colaboradores-list">
+        <ion-item lines="inset" *ngFor="let trabajador of trabajadores">
+          <ion-label>{{ trabajador.name }}</ion-label>
+          <ion-checkbox
+            slot="end"
+            [checked]="campoData.colaboradores?.includes(trabajador.uid)"
+            (ionChange)="toggleColaborador(trabajador.uid, $event.detail.checked)">
+          </ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" class="submit-button" (click)="guardar()">
+    Guardar campo
+  </ion-button>
+
+</ion-content>

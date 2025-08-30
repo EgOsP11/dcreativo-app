@@ -1,0 +1,32 @@
+.nueva-tarea-content {
+    --background: #ffffff;
+  }
+  
+  ion-item {
+    margin-bottom: 16px;
+    border-radius: 12px;
+    --background: #fff;
+    --border-color: #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  }
+  
+  ion-label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  
+  ion-input, ion-select, ion-datetime {
+    font-size: 16px;
+    color: #000;
+    padding-left: 8px;
+  }
+  
+  .guardar-btn {
+    --background: #000;
+    --color: #fff;
+    --border-radius: 10px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+  }
+  
