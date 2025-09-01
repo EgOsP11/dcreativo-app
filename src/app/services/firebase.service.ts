@@ -19,6 +19,12 @@ export class FirebaseService {
   storage = inject(AngularFireStorage);
   utilsSvc = inject(UtilsService);
 
+  /** ================== PUSH (via Vercel) ================== */
+  // Cambia esto si usas otro dominio/proyecto en Vercel
+  private readonly PUSH_URL = 'https://dcreativo-app.vercel.app/api/push';
+  // Si después proteges tu endpoint con API KEY, colócala aquí y se enviará en 'X-API-KEY'
+  private readonly API_KEY = '';
+
   // ======== AUTENTICACIÓN ========
   getAuthInstance() {
     return this.auth;
@@ -123,21 +129,62 @@ export class FirebaseService {
     });
   }
 
-  // ====== ENVIAR NOTIFICACIÓN (vía servidor Node.js o Vercel) ======
-  async sendPushNotification(token: string, title: string, body: string) {
+  /** ==========================================================
+   *  ENVIAR NOTIFICACIÓN (via tu función /api/push en Vercel)
+   *  ========================================================== */
+  async sendPushNotification(
+    token: string,
+    title: string,
+    body: string,
+    data: Record<string, string> = {}
+  ): Promise<any> {
     try {
-      const res = await fetch('http://localhost:3000/notify-task', {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (this.API_KEY) headers['X-API-KEY'] = this.API_KEY;
+
+      const res = await fetch(this.PUSH_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          deviceToken: token,
-          taskTitle: title,
-          taskDeadline: body,  // usamos "body" como fecha/mensaje
-        }),
+        headers,
+        body: JSON.stringify({ token, title, body, data }),
       });
-      return await res.json();
+
+      const text = await res.text();
+      try {
+        const json = JSON.parse(text);
+        if (!res.ok) {
+          console.error('[Push] Error HTTP', res.status, json);
+        }
+        return json;
+      } catch {
+        if (!res.ok) console.error('[Push] Error HTTP', res.status, text);
+        return text;
+      }
     } catch (err) {
       console.error('Error enviando notificación:', err);
+      return null;
+    }
+  }
+
+  /**
+   * Busca el token del usuario en `users/{uid}.notificationToken`
+   * y le envía una notificación. Devuelve `null` si no hay token.
+   */
+  async notifyUser(
+    uid: string,
+    title: string,
+    body: string,
+    data: Record<string, string> = {}
+  ): Promise<any | null> {
+    try {
+      const userDoc = await this.getDocument(`users/${uid}`) as any;
+      const token = userDoc?.notificationToken;
+      if (!token) {
+        console.warn(`[Push] Usuario ${uid} no tiene notificationToken`);
+        return null;
+      }
+      return await this.sendPushNotification(token, title, body, data);
+    } catch (e) {
+      console.error('[Push] notifyUser error:', e);
       return null;
     }
   }

@@ -43,8 +43,8 @@
     <ion-button expand="block" color="medium" fill="outline" (click)="cerrar()">
       Cancelar
     </ion-button>
-    <ion-button expand="block" color="success" (click)="guardar()">
-      Guardar Tarea
+    <ion-button expand="block" color="success" [disabled]="guardando" (click)="guardar()">
+      {{ guardando ? 'Guardando...' : 'Guardar Tarea' }}
     </ion-button>
   </div>
 </ion-content>
